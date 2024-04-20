@@ -161,9 +161,8 @@ def explore() -> rx.Component:
             
             rx.grid(
 
-
-                rx.popover.root(
-                    rx.popover.trigger(
+                rx.dialog.root(
+                    rx.dialog.trigger(
                         rx.button(
 
                             rx.text(
@@ -183,24 +182,29 @@ def explore() -> rx.Component:
                             height="100%",
                         ),
                     ),
-                    rx.popover.content(
-                        rx.flex(
-                            rx.text("Test"), #TODO put the content here
-                            rx.popover.close(
-                                rx.button(
-                                    "Close",
-                                    #background = _BLUE,
-                                ),
-                            ),
-                            direction="column",
-                            spacing="3",
+                    rx.dialog.content(
+
+                        rx.dialog.title("Recycling Center"),
+                        
+                        rx.dialog.description(
+                            "This is a dialog component. You can render anything youThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in here want in here.",
                         ),
+                        rx.dialog.close(
+                            rx.button("Close", size="3"),
+                        ),
+
+                        direction="column",
+                        align="center",
+                        spacing="3",
+                        border_radius="10px",
+                        #width="50%",
+                        #height="50%",
                     ),
                 ),
 
 
-                rx.popover.root(
-                    rx.popover.trigger(
+                rx.dialog.root(
+                    rx.dialog.trigger(
                         rx.button(
 
                             rx.text(
@@ -220,24 +224,29 @@ def explore() -> rx.Component:
                             height="100%",
                         ),
                     ),
-                    rx.popover.content(
-                        rx.flex(
-                            rx.text("Test"), #TODO put the content here
-                            rx.popover.close(
-                                rx.button(
-                                    "Close",
-                                    #background = _BLUE,
-                                ),
-                            ),
-                            direction="column",
-                            spacing="3",
+                    rx.dialog.content(
+
+                        rx.dialog.title("Farmers Market"),
+                        
+                        rx.dialog.description(
+                            "This is a dialog component. You can render anything youThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in here want in here.",
                         ),
+                        rx.dialog.close(
+                            rx.button("Close", size="3"),
+                        ),
+
+                        direction="column",
+                        align="center",
+                        spacing="3",
+                        border_radius="10px",
+                        #width="50%",
+                        #height="50%",
                     ),
                 ),
 
 
-                rx.popover.root(
-                    rx.popover.trigger(
+                rx.dialog.root(
+                    rx.dialog.trigger(
                         rx.button(
 
                             rx.text(
@@ -257,27 +266,33 @@ def explore() -> rx.Component:
                             height="100%",
                         ),
                     ),
-                    rx.popover.content(
-                        rx.flex(
-                            rx.text("Test"), #TODO put the content here
-                            rx.popover.close(
-                                rx.button(
-                                    "Close",
-                                    #background = _BLUE,
-                                ),
-                            ),
-                            direction="column",
-                            spacing="3",
+                    rx.dialog.content(
+
+                        rx.dialog.title("Metro Station"),
+                        
+                        rx.dialog.description(
+                            "This is a dialog component. You can render anything youThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in here want in here.",
                         ),
+                        rx.dialog.close(
+                            rx.button("Close", size="3"),
+                        ),
+
+                        direction="column",
+                        align="center",
+                        spacing="3",
+                        border_radius="10px",
+                        #width="50%",
+                        #height="50%",
                     ),
                 ),
 
-                rx.popover.root(
-                    rx.popover.trigger(
+
+                rx.dialog.root(
+                    rx.dialog.trigger(
                         rx.button(
 
                             rx.text(
-                                "Explore the Park",
+                                "Explore The Park",
                                 #color=_BLUE,
                                 size="8",
                                 weight="bold",
@@ -293,18 +308,23 @@ def explore() -> rx.Component:
                             height="100%",
                         ),
                     ),
-                    rx.popover.content(
-                        rx.flex(
-                            rx.text("Test"), #TODO put the content here
-                            rx.popover.close(
-                                rx.button(
-                                    "Close",
-                                    #background = _BLUE,
-                                ),
-                            ),
-                            direction="column",
-                            spacing="3",
+                    rx.dialog.content(
+
+                        rx.dialog.title("Explore The Park"),
+                        
+                        rx.dialog.description(
+                            "This is a dialog component. You can render anything youThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in here want in here.",
                         ),
+                        rx.dialog.close(
+                            rx.button("Close", size="3"),
+                        ),
+
+                        direction="column",
+                        align="center",
+                        spacing="3",
+                        border_radius="10px",
+                        #width="50%",
+                        #height="50%",
                     ),
                 ),
 
@@ -396,7 +416,7 @@ def explore() -> rx.Component:
                 columns="2",
                 spacing="8",
                 width="75%",
-                height = "65%",
+                height = "60%",
                 align = "center",
             ),
 
