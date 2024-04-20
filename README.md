@@ -1,3 +1,17 @@
-# Dashboard Template
+# A Python virtual environment is required to run this app
 
-This is a Reflex starter template for a dashboard app.
+# Install the virtual environment
+pip install virtualenv
+
+# Create the virtual environment
+python3 -m venv env
+
+# Run the virtual environment
+env/Scripts/activate.bat (for CMD)
+env/Scripts/Activate.ps1 (for powershell)
+
+# Install reflex
+pip3 install reflex
+
+# Run the application
+reflex run

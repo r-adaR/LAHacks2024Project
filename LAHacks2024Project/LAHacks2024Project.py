@@ -1,21 +1,36 @@
-"""The main Dashboard App."""
+"""Welcome to Reflex! This file outlines the steps to create a basic app."""
 
 from rxconfig import config
 
 import reflex as rx
 
-from LAHacks2024Project.styles import BACKGROUND_COLOR, FONT_FAMILY, THEME, STYLESHEETS
+docs_url = "https://reflex.dev/docs/getting-started/introduction/"
+filename = f"{config.app_name}/{config.app_name}.py"
 
-from LAHacks2024Project.pages.tools import tools
-from LAHacks2024Project.pages.team import team
-from LAHacks2024Project.pages.index import index
 
-# Create app instance and add index page.
-app = rx.App(
-    theme=THEME,
-    stylesheets=STYLESHEETS,
-)
+class State(rx.State):
+    """The app state."""
 
-app.add_page(index, route="/")
-app.add_page(tools, route="/tools")
-app.add_page(team, route="/team")
+
+def index() -> rx.Component:
+    return rx.center(
+        rx.theme_panel(),
+        rx.vstack(
+            rx.heading("Welcome to Reflex!", size="9"),
+            rx.text("Get started by editing ", rx.code(filename)),
+            rx.button(
+                "Check out our docs!",
+                on_click=lambda: rx.redirect(docs_url),
+                size="4",
+            ),
+            rx.logo(),
+            align="center",
+            spacing="7",
+            font_size="2em",
+        ),
+        height="100vh",
+    )
+
+
+app = rx.App()
+app.add_page(index)
