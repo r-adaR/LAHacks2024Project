@@ -11,26 +11,51 @@ filename = f"{config.app_name}/{config.app_name}.py"
 class State(rx.State):
     """The app state."""
 
-
-def index() -> rx.Component:
+@rx.page(route="/", title="Home Page")
+def home() -> rx.Component:
     return rx.center(
-        rx.theme_panel(),
-        rx.vstack(
-            rx.heading("Welcome to Reflex!", size="9"),
-            rx.text("Get started by editing ", rx.code(filename)),
+        rx.flex(
             rx.button(
-                "Check out our docs!",
-                on_click=lambda: rx.redirect(docs_url),
+                "Get Started",
+                color="#EDFA8B",
                 size="4",
             ),
-            rx.logo(),
+            rx.button(
+                "More Info",
+                color="#EDFA8B",
+                size="4",
+            ),
+            spacing="2",
             align="center",
-            spacing="7",
-            font_size="2em",
         ),
-        height="100vh",
+        background="linear-gradient(45deg, green, blue)",
     )
 
 
-app = rx.App()
-app.add_page(index)
+@rx.page(route="/test", title="Testing Page")
+def test() -> rx.Component:
+    return rx.vstack(
+    rx.desktop_only(
+        rx.text("Desktop View"),
+    ),
+    rx.tablet_only(
+        rx.text("Tablet View"),
+    ),
+    rx.mobile_only(
+        rx.text("Mobile View"),
+    ),
+    rx.mobile_and_tablet(
+        rx.text("Visible on Mobile and Tablet"),
+    ),
+    rx.tablet_and_desktop(
+        rx.text("Visible on Desktop and Tablet"),
+    ),
+)
+
+app = rx.App(
+    theme=rx.theme(
+        appearance="light",
+        has_background=True,
+        accent_color="grass",
+    )
+)
