@@ -4,11 +4,12 @@ from .model import model
 _types: list = ["recycling", "market", "metro", "park", "none"]
 
 class SuggestionState(rx.State):
-    selected: str = "metro"
+    selected: str = "none"
     form_data: dict = ()
 
     def handle_submit(self, form_data: dict):
         self.form_data = form_data
+        self.generate_suggestions()
 
 
     def generate_suggestions(self):

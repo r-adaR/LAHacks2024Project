@@ -5,6 +5,7 @@ import reflex as rx
 docs_url = "https://reflex.dev/docs/getting-started/introduction/"
 filename = f"{config.app_name}/{config.app_name}.py"
 
+#foreach for every dialog box
 
 class State(rx.State):
     """The app state."""
@@ -25,8 +26,11 @@ class State(rx.State):
 
 
 
-_GREEN = "#86FF9D"#"#edfa8b"
-_BLUE = "#3a53aa"#"#5664D6"#"#1e425e"
+_GREEN = "#86FF9D"
+_BLUE = "#3a53aa"
+_ACTIVITIES = []
+_ACTIVITY_TYPES = []
+_ACTIVITY_DESCRIPTIONS = []
 
 @rx.page(route="/", title="Home Page")
 def home() -> rx.Component:
@@ -107,8 +111,6 @@ def home() -> rx.Component:
 
             rx.button(
                 "Get Started",
-                #color=_GREEN,
-                #color_scheme="indigo",
                 size="4",
                 on_click=rx.redirect("/explore/"),
             ),
@@ -118,8 +120,6 @@ def home() -> rx.Component:
 
             rx.button(
                 "Credits",
-                #color=_GREEN,
-                #color_scheme="indigo",
                 size="4",
                 on_click=rx.redirect("/credits/"),
             ),
@@ -132,7 +132,6 @@ def home() -> rx.Component:
             spacing="3",
             direction="column",
             background=f"linear-gradient(45deg, #ffffff, {_GREEN})",
-            #background=f"linear-gradient(45deg, {_GREEN}, #00ff33)",
             align="center",
             flex_wrap="wrap",
             width = "100%",
@@ -175,7 +174,6 @@ def explore() -> rx.Component:
 
                             rx.text(
                                 "Recycling Center",
-                                #color=_BLUE,
                                 size="8",
                                 weight="bold",
                                 align="center",
@@ -184,10 +182,10 @@ def explore() -> rx.Component:
                             ),
 
 
-                            #background = "#00aa00",
                             border_radius="10px",
                             width="100%",
                             height="100%",
+                            #on_click=SuggestionState.set_selected("recycling")
                         ),
                     ),
                     rx.dialog.content(
@@ -268,7 +266,7 @@ def explore() -> rx.Component:
                                 spacing="2",
                                 direction="column",
                                 margin_bottom = "10px",
-                                on_submit=State.handle_submit,
+                                on_submit=SuggestionState.handle_submit,
                                 reset_on_submit=False,
                             ),
                         ),
@@ -286,8 +284,6 @@ def explore() -> rx.Component:
                         align="center",
                         spacing="3",
                         border_radius="10px",
-                        #width="50%",
-                        #height="50%",
                     ),
                 ),
 
@@ -297,7 +293,6 @@ def explore() -> rx.Component:
 
                             rx.text(
                                 "Farmers Market",
-                                #color=_BLUE,
                                 size="8",
                                 weight="bold",
                                 align="center",
@@ -305,11 +300,10 @@ def explore() -> rx.Component:
                                 height = "15%",
                             ),
 
-
-                            #background = "#00aa00",
                             border_radius="10px",
                             width="100%",
                             height="100%",
+                            on_click=SuggestionState.set_selected("market")
                         ),
                     ),
                     rx.dialog.content(
@@ -408,8 +402,6 @@ def explore() -> rx.Component:
                         align="center",
                         spacing="3",
                         border_radius="10px",
-                        #width="50%",
-                        #height="50%",
                     ),
                 ),
 
@@ -419,19 +411,16 @@ def explore() -> rx.Component:
 
                             rx.text(
                                 "Metro Station",
-                                #color=_BLUE,
                                 size="8",
                                 weight="bold",
                                 align="center",
                                 width = "90%",
                                 height = "15%",
                             ),
-
-
-                            #background = "#00aa00",
                             border_radius="10px",
                             width="100%",
                             height="100%",
+                            on_click=SuggestionState.set_selected("metro"),
                         ),
                     ),
                     rx.dialog.content(
@@ -530,11 +519,8 @@ def explore() -> rx.Component:
                         align="center",
                         spacing="3",
                         border_radius="10px",
-                        #width="50%",
-                        #height="50%",
                     ),
                 ),
-
 
                 rx.dialog.root(
                     rx.dialog.trigger(
@@ -542,7 +528,6 @@ def explore() -> rx.Component:
 
                             rx.text(
                                 "Explore the Park",
-                                #color=_BLUE,
                                 size="8",
                                 weight="bold",
                                 align="center",
@@ -551,10 +536,10 @@ def explore() -> rx.Component:
                             ),
 
 
-                            #background = "#00aa00",
                             border_radius="10px",
                             width="100%",
                             height="100%",
+                            on_click=SuggestionState.set_selected("park")
                         ),
                     ),
                     rx.dialog.content(
@@ -653,451 +638,8 @@ def explore() -> rx.Component:
                         align="center",
                         spacing="3",
                         border_radius="10px",
-                        #width="50%",
-                        #height="50%",
                     ),
                 ),
-
-
-
-
-                # rx.dialog.root(
-                #     rx.dialog.trigger(
-                #         rx.button(
-
-                #             rx.text(
-                #                 "Farmers Market",
-                #                 #color=_BLUE,
-                #                 size="8",
-                #                 weight="bold",
-                #                 align="center",
-                #                 width = "90%",
-                #                 height = "15%",
-                #             ),
-
-
-                #             #background = "#00aa00",
-                #             border_radius="10px",
-                #             width="100%",
-                #             height="100%",
-                #         ),
-                #     ),
-                #     rx.dialog.content(
-
-                #         rx.dialog.title("Farmers Market"),
-                        
-                #         rx.flex(
-
-                #             rx.input(
-                #             placeholder="City Name",
-                #             value=State.city,
-                #             on_change=State.setCity,
-                #             ),
-
-                #             rx.select.root(
-                #                 rx.select.trigger(),
-                #                 rx.select.content(
-                #                     rx.select.item("AL", value="AL"),
-                #                     rx.select.item("AK", value="AK"),
-                #                     rx.select.item("AZ", value="AZ"),
-                #                     rx.select.item("AR", value="AR"),
-                #                     rx.select.item("CA", value="CA"),
-                #                     rx.select.item("CO", value="CO"),
-                #                     rx.select.item("CT", value="CT"),
-                #                     rx.select.item("DE", value="DE"),
-                #                     rx.select.item("DC", value="DC"),
-                #                     rx.select.item("FL", value="FL"),
-                #                     rx.select.item("GA", value="GA"),
-                #                     rx.select.item("HI", value="HI"),
-                #                     rx.select.item("ID", value="ID"),
-                #                     rx.select.item("IL", value="IL"),
-                #                     rx.select.item("IN", value="IN"),
-                #                     rx.select.item("IA", value="IA"),
-                #                     rx.select.item("KS", value="KS"),
-                #                     rx.select.item("KY", value="KY"),
-                #                     rx.select.item("LA", value="LA"),
-                #                     rx.select.item("ME", value="ME"),
-                #                     rx.select.item("MD", value="MD"),
-                #                     rx.select.item("MA", value="MA"),
-                #                     rx.select.item("MI", value="MI"),
-                #                     rx.select.item("MN", value="MN"),
-                #                     rx.select.item("MS", value="MS"),
-                #                     rx.select.item("MO", value="MO"),
-                #                     rx.select.item("MT", value="MT"),
-                #                     rx.select.item("NE", value="NE"),
-                #                     rx.select.item("NV", value="NV"),
-                #                     rx.select.item("NH", value="NH"),
-                #                     rx.select.item("NJ", value="NJ"),
-                #                     rx.select.item("NM", value="NM"),
-                #                     rx.select.item("NY", value="NY"),
-                #                     rx.select.item("NC", value="NC"),
-                #                     rx.select.item("ND", value="ND"),
-                #                     rx.select.item("OH", value="OH"),
-                #                     rx.select.item("OK", value="OK"),
-                #                     rx.select.item("OR", value="OR"),
-                #                     rx.select.item("PA", value="PA"),
-                #                     rx.select.item("RI", value="RI"),
-                #                     rx.select.item("SC", value="SC"),
-                #                     rx.select.item("SD", value="SD"),
-                #                     rx.select.item("TN", value="TN"),
-                #                     rx.select.item("TX", value="TX"),
-                #                     rx.select.item("UT", value="UT"),
-                #                     rx.select.item("VT", value="VT"),
-                #                     rx.select.item("VA", value="VA"),
-                #                     rx.select.item("WA", value="WA"),
-                #                     rx.select.item("WV", value="WV"),
-                #                     rx.select.item("WI", value="WI"),
-                #                     rx.select.item("WY", value="WY"),
-                #                 ),
-                #                 on_change=State.setState,
-                #                 default_value=State.state,
-                #             ),
-
-                #             spacing="2",
-                #             direction="row",
-                #             margin_bottom = "10px",
-
-                #         ),
-                        
-
-
-                #         rx.dialog.description(
-                #             "This is a dialog component. You can render anything youThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in here want in here.", 
-                #             margin_bottom = "10px",
-                #         ),
-                #         rx.dialog.close(
-                #             rx.button("Close", size="3"),
-                #         ),
-
-                #         direction="column",
-                #         align="center",
-                #         spacing="3",
-                #         border_radius="10px",
-                #         #width="50%",
-                #         #height="50%",
-                #     ),
-                # ),
-
-
-                # rx.dialog.root(
-                #     rx.dialog.trigger(
-                #         rx.button(
-
-                #             rx.text(
-                #                 "Metro Station",
-                #                 #color=_BLUE,
-                #                 size="8",
-                #                 weight="bold",
-                #                 align="center",
-                #                 width = "90%",
-                #                 height = "15%",
-                #             ),
-
-
-                #             #background = "#00aa00",
-                #             border_radius="10px",
-                #             width="100%",
-                #             height="100%",
-                #         ),
-                #     ),
-                #     rx.dialog.content(
-
-                #         rx.dialog.title("Metro Station"),
-                        
-                #         rx.flex(
-
-                #             rx.input(
-                #             placeholder="City Name",
-                #             value=State.city,
-                #             on_change=State.setCity,
-                #             ),
-
-                #             rx.select.root(
-                #                 rx.select.trigger(),
-                #                 rx.select.content(
-                #                     rx.select.item("AL", value="AL"),
-                #                     rx.select.item("AK", value="AK"),
-                #                     rx.select.item("AZ", value="AZ"),
-                #                     rx.select.item("AR", value="AR"),
-                #                     rx.select.item("CA", value="CA"),
-                #                     rx.select.item("CO", value="CO"),
-                #                     rx.select.item("CT", value="CT"),
-                #                     rx.select.item("DE", value="DE"),
-                #                     rx.select.item("DC", value="DC"),
-                #                     rx.select.item("FL", value="FL"),
-                #                     rx.select.item("GA", value="GA"),
-                #                     rx.select.item("HI", value="HI"),
-                #                     rx.select.item("ID", value="ID"),
-                #                     rx.select.item("IL", value="IL"),
-                #                     rx.select.item("IN", value="IN"),
-                #                     rx.select.item("IA", value="IA"),
-                #                     rx.select.item("KS", value="KS"),
-                #                     rx.select.item("KY", value="KY"),
-                #                     rx.select.item("LA", value="LA"),
-                #                     rx.select.item("ME", value="ME"),
-                #                     rx.select.item("MD", value="MD"),
-                #                     rx.select.item("MA", value="MA"),
-                #                     rx.select.item("MI", value="MI"),
-                #                     rx.select.item("MN", value="MN"),
-                #                     rx.select.item("MS", value="MS"),
-                #                     rx.select.item("MO", value="MO"),
-                #                     rx.select.item("MT", value="MT"),
-                #                     rx.select.item("NE", value="NE"),
-                #                     rx.select.item("NV", value="NV"),
-                #                     rx.select.item("NH", value="NH"),
-                #                     rx.select.item("NJ", value="NJ"),
-                #                     rx.select.item("NM", value="NM"),
-                #                     rx.select.item("NY", value="NY"),
-                #                     rx.select.item("NC", value="NC"),
-                #                     rx.select.item("ND", value="ND"),
-                #                     rx.select.item("OH", value="OH"),
-                #                     rx.select.item("OK", value="OK"),
-                #                     rx.select.item("OR", value="OR"),
-                #                     rx.select.item("PA", value="PA"),
-                #                     rx.select.item("RI", value="RI"),
-                #                     rx.select.item("SC", value="SC"),
-                #                     rx.select.item("SD", value="SD"),
-                #                     rx.select.item("TN", value="TN"),
-                #                     rx.select.item("TX", value="TX"),
-                #                     rx.select.item("UT", value="UT"),
-                #                     rx.select.item("VT", value="VT"),
-                #                     rx.select.item("VA", value="VA"),
-                #                     rx.select.item("WA", value="WA"),
-                #                     rx.select.item("WV", value="WV"),
-                #                     rx.select.item("WI", value="WI"),
-                #                     rx.select.item("WY", value="WY"),
-                #                 ),
-                #                 on_change=State.setState,
-                #                 default_value=State.state,
-                #             ),
-
-                #             spacing="2",
-                #             direction="row",
-                #             margin_bottom = "10px",
-
-                #         ),
-                        
-
-
-                #         rx.dialog.description(
-                #             "This is a dialog component. You can render anything youThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in here want in here.", 
-                #             margin_bottom = "10px",
-                #         ),
-                #         rx.dialog.close(
-                #             rx.button("Close", size="3"),
-                #         ),
-
-                #         direction="column",
-                #         align="center",
-                #         spacing="3",
-                #         border_radius="10px",
-                #         #width="50%",
-                #         #height="50%",
-                #     ),
-                # ),
-
-
-                # rx.dialog.root(
-                #     rx.dialog.trigger(
-                #         rx.button(
-
-                #             rx.text(
-                #                 "Explore The Park",
-                #                 #color=_BLUE,
-                #                 size="8",
-                #                 weight="bold",
-                #                 align="center",
-                #                 width = "90%",
-                #                 height = "15%",
-                #             ),
-
-
-                #             #background = "#00aa00",
-                #             border_radius="10px",
-                #             width="100%",
-                #             height="100%",
-                #         ),
-                #     ),
-                #     rx.dialog.content(
-
-                #         rx.dialog.title("Explore The Park"),
-                        
-                #         rx.flex(
-
-                #             rx.input(
-                #             placeholder="City Name",
-                #             value=State.city,
-                #             on_change=State.setCity,
-                #             ),
-
-                #             rx.select.root(
-                #                 rx.select.trigger(),
-                #                 rx.select.content(
-                #                     rx.select.item("AL", value="AL"),
-                #                     rx.select.item("AK", value="AK"),
-                #                     rx.select.item("AZ", value="AZ"),
-                #                     rx.select.item("AR", value="AR"),
-                #                     rx.select.item("CA", value="CA"),
-                #                     rx.select.item("CO", value="CO"),
-                #                     rx.select.item("CT", value="CT"),
-                #                     rx.select.item("DE", value="DE"),
-                #                     rx.select.item("DC", value="DC"),
-                #                     rx.select.item("FL", value="FL"),
-                #                     rx.select.item("GA", value="GA"),
-                #                     rx.select.item("HI", value="HI"),
-                #                     rx.select.item("ID", value="ID"),
-                #                     rx.select.item("IL", value="IL"),
-                #                     rx.select.item("IN", value="IN"),
-                #                     rx.select.item("IA", value="IA"),
-                #                     rx.select.item("KS", value="KS"),
-                #                     rx.select.item("KY", value="KY"),
-                #                     rx.select.item("LA", value="LA"),
-                #                     rx.select.item("ME", value="ME"),
-                #                     rx.select.item("MD", value="MD"),
-                #                     rx.select.item("MA", value="MA"),
-                #                     rx.select.item("MI", value="MI"),
-                #                     rx.select.item("MN", value="MN"),
-                #                     rx.select.item("MS", value="MS"),
-                #                     rx.select.item("MO", value="MO"),
-                #                     rx.select.item("MT", value="MT"),
-                #                     rx.select.item("NE", value="NE"),
-                #                     rx.select.item("NV", value="NV"),
-                #                     rx.select.item("NH", value="NH"),
-                #                     rx.select.item("NJ", value="NJ"),
-                #                     rx.select.item("NM", value="NM"),
-                #                     rx.select.item("NY", value="NY"),
-                #                     rx.select.item("NC", value="NC"),
-                #                     rx.select.item("ND", value="ND"),
-                #                     rx.select.item("OH", value="OH"),
-                #                     rx.select.item("OK", value="OK"),
-                #                     rx.select.item("OR", value="OR"),
-                #                     rx.select.item("PA", value="PA"),
-                #                     rx.select.item("RI", value="RI"),
-                #                     rx.select.item("SC", value="SC"),
-                #                     rx.select.item("SD", value="SD"),
-                #                     rx.select.item("TN", value="TN"),
-                #                     rx.select.item("TX", value="TX"),
-                #                     rx.select.item("UT", value="UT"),
-                #                     rx.select.item("VT", value="VT"),
-                #                     rx.select.item("VA", value="VA"),
-                #                     rx.select.item("WA", value="WA"),
-                #                     rx.select.item("WV", value="WV"),
-                #                     rx.select.item("WI", value="WI"),
-                #                     rx.select.item("WY", value="WY"),
-                #                 ),
-                #                 on_change=State.setState,
-                #                 default_value=State.state,
-                #             ),
-
-                #             spacing="2",
-                #             direction="row",
-                #             margin_bottom = "10px",
-
-                #         ),
-                        
-
-
-                #         rx.dialog.description(
-                #             "This is a dialog component. You can render anything youThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in here want in here.", 
-                #             margin_bottom = "10px",
-                #         ),
-                #         rx.dialog.close(
-                #             rx.button("Close", size="3"),
-                #         ),
-
-                #         direction="column",
-                #         align="center",
-                #         spacing="3",
-                #         border_radius="10px",
-                #         #width="50%",
-                #         #height="50%",
-                #     ),
-                # ),
-
-
-
-
-
-
-
-
-                # rx.flex(
-                #     rx.box(),
-                #     rx.text(
-                #         "Recycling Center",
-                #         color=_BLUE,
-                #         size="8",
-                #         weight="bold",
-                #         align="center",
-                #         width = "90%",
-                #         height = "15%",
-                #     ),
-                #     rx.box(),
-                #     # TODO put an image
-                #     rx.box(),
-                #     rx.popover.root(
-                #         rx.popover.trigger(
-                #             rx.button(
-                #                 "Information",
-                #                 background = _BLUE,
-                #                 width = "90%",
-                #                 height = "15%",
-                #             ),
-                #         ),
-                #         rx.popover.content(
-                #             rx.flex(
-                #                 rx.text("Simple Example"), #TODO put the content here
-                #                 rx.popover.close(
-                #                     rx.button(
-                #                         "Close",
-                #                         background = _BLUE,
-                #                     ),
-                #                 ),
-                #                 direction="column",
-                #                 spacing="3",
-                #             ),
-                #         ),
-                #     ),
-                #     rx.box(),
-
-                #     background="lime",
-                #     align="center",
-                #     width = "100%",
-                #     height = "100%",
-                #     border_radius = "10px",
-                #     spacing = "2",
-                #     direction="column"
-                # ),
-
-
-
-
-
-
-                # rx.card(
-                #     background="lime",
-                #     align="center",
-                #     width = "100%",
-                #     height = "100%",
-                #     border_radius = "10px",
-                #     on_click=State.printTestMsg
-                # ),
-                # rx.card(
-                #     background="lime",
-                #     align="center",
-                #     width = "100%",
-                #     height = "100%",
-                #     border_radius = "10px",
-                #     on_click=State.printTestMsg
-                # ),
-                # rx.card(
-                #     background="lime",
-                #     align="center",
-                #     width = "100%",
-                #     height = "100%",
-                #     border_radius = "10px",
-                #     on_click=State.printTestMsg
-                # ),
 
                 columns="2",
                 spacing="8",
@@ -1114,8 +656,6 @@ def explore() -> rx.Component:
 
             rx.button(
                 "Back to Home",
-                #color=_GREEN,
-                #color_scheme="indigo",
                 size="4",
                 on_click=rx.redirect("/"),
             ),
@@ -1128,7 +668,6 @@ def explore() -> rx.Component:
             spacing="3",
             direction="column",
             background=f"linear-gradient(45deg, #ffffff, {_GREEN})",
-            #background=f"linear-gradient(45deg, {_GREEN}, #00ff33)",
             align="center",
             flex_wrap="wrap",
             width = "100%",
@@ -1216,8 +755,6 @@ def credits() -> rx.Component:
 
             rx.button(
                 "Back to Home",
-                #color=_GREEN,
-                #color_scheme="indigo",
                 size="4",
                 on_click=rx.redirect("/")
             ),
@@ -1233,7 +770,6 @@ def credits() -> rx.Component:
             spacing="2",
             direction="column",
             background=f"linear-gradient(45deg, #ffffff, {_GREEN})",
-            #background=f"linear-gradient(45deg, {_GREEN}, #00ff33)",
             align="center",
             flex_wrap="wrap",
             width = "100%",
@@ -1269,25 +805,6 @@ def test() -> rx.Component:
             on_click=SuggestionState.generate_suggestions
         )
     )
-    rx.desktop_only(
-        rx.text("Desktop View"),
-    ),
-    rx.tablet_only(
-        rx.text("Tablet View"),
-    ),
-    rx.mobile_only(
-        rx.text("Mobile View"),
-    ),
-    rx.mobile_and_tablet(
-        rx.text("Visible on Mobile and Tablet"),
-    ),
-    rx.tablet_and_desktop(
-        rx.text("Visible on Desktop and Tablet"),
-    ),
-)
-
-
-
 
 
 app = rx.App(
@@ -1298,17 +815,3 @@ app = rx.App(
     )
 )
 
-"""rx.form(
-        rx.vstack(
-                rx.input(
-                    placeholder="City",
-                    name="city",
-                ),
-                rx.input(
-                    placeholder="State",
-                    name="state",
-                ),
-                rx.button("Submit", type="submit"),
-            ),
-            on_submit=SuggestionState.handle_submission
-        """
