@@ -2,36 +2,20 @@ from rxconfig import config
 from .api.suggestions import SuggestionState
 import reflex as rx
 
-docs_url = "https://reflex.dev/docs/getting-started/introduction/"
-filename = f"{config.app_name}/{config.app_name}.py"
 
-#foreach for every dialog box
+# Custom color variables
+_GREEN = "#86FF9D"
+_BLUE = "#3a53aa"
 
+
+# Default State settings
 class State(rx.State):
-    """The app state."""
-
     city:str = 'Los Angeles'
     state:str = 'CA'
     form_data: dict = {'city': city, 'state': state}
-    
-
-    def handle_submit(self, form_data: dict):
-        """Handle the form submit."""
-        self.form_data = form_data
-        self.city = form_data['city']
-        self.state = form_data['state']
-        print(self.form_data)
-        print(self.city)
-        print(self.state)
 
 
-
-_GREEN = "#86FF9D"
-_BLUE = "#3a53aa"
-_ACTIVITIES = []
-_ACTIVITY_TYPES = []
-_ACTIVITY_DESCRIPTIONS = []
-
+# Home page frontend implementation
 @rx.page(route="/", title="Home Page")
 def home() -> rx.Component:
     return \
@@ -143,7 +127,7 @@ def home() -> rx.Component:
 
 
 
-
+# Explore page frontend implementation
 @rx.page(route="/explore", title="Explore")
 def explore() -> rx.Component:
     return \
@@ -685,7 +669,7 @@ def explore() -> rx.Component:
     )
 
 
-
+# Credits page frontend implementation
 @rx.page(route="/credits", title="Credits")
 def credits() -> rx.Component:
     return \
@@ -787,33 +771,7 @@ def credits() -> rx.Component:
     )
 
 
-
-
-@rx.page(route="/test", title="Testing Page")
-def test() -> rx.Component:
-    return rx.vstack(
-        rx.form(
-            rx.input(
-                placeholder="City",
-                name="city",
-            ),
-            rx.input(
-                placeholder="State",
-                name="state",
-            ),
-            rx.button(
-                "Generate",
-                type="submit",
-            ),
-            on_submit=SuggestionState.handle_submit
-        ),
-        rx.button(
-            "what",
-            on_click=SuggestionState.generate_suggestions
-        )
-    )
-
-
+# Starts the application.
 app = rx.App(
     theme=rx.theme(
         appearance="light",

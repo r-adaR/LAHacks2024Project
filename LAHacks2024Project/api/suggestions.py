@@ -8,11 +8,14 @@ class SuggestionState(rx.State):
     response = ""
     form_data: dict = ()
 
+
+    # Takes in the submission data and generates suggestions given the selected city and state.
     def handle_submit(self, form_data: dict):
         self.form_data = form_data
         self.generate_suggestions()
 
 
+    # Generate the top three activities with Gemini given the city and state in the form data.
     def generate_suggestions(self):
         match self.selected:
             case "recycling":
