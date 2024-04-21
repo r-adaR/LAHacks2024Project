@@ -1,15 +1,6 @@
-"""Welcome to Reflex! This file outlines the steps to create a basic app."""
-
 from rxconfig import config
-
+from .api.suggestions import SuggestionState
 import reflex as rx
-
-docs_url = "https://reflex.dev/docs/getting-started/introduction/"
-filename = f"{config.app_name}/{config.app_name}.py"
-
-
-class State(rx.State):
-    """The app state."""
 
 @rx.page(route="/", title="Home Page")
 def home() -> rx.Component:
@@ -34,36 +25,27 @@ def home() -> rx.Component:
 
 @rx.page(route="/test", title="Testing Page")
 def test() -> rx.Component:
-    return rx.flex(
+    return rx.vstack(
+        rx.form(
+            rx.input(
+                placeholder="City",
+                name="city",
+            ),
+            rx.input(
+                placeholder="State",
+                name="state",
+            ),
+            rx.button(
+                "Generate",
+                type="submit",
+            ),
+            on_submit=SuggestionState.handle_submit
+        ),
         rx.button(
-            "Generate",
-            color="#EDFA8B",
-            size="4",
-        ),
-        #rx.input(
-        #    "Input",
-        #    size=4,
-        #),
-        direction="column",
+            "what",
+            on_click=SuggestionState.generate_suggestions
+        )
     )
-    """return rx.vstack(
-        rx.desktop_only(
-            rx.text("Desktop View"),
-        ),
-        rx.tablet_only(
-            rx.text("Tablet View"),
-        ),
-        rx.mobile_only(
-            rx.text("Mobile View"),
-        ),
-        rx.mobile_and_tablet(
-            rx.text("Visible on Mobile and Tablet"),
-        ),
-        rx.tablet_and_desktop(
-            rx.text("Visible on Desktop and Tablet"),
-        ),
-    )"""
-
 
 app = rx.App(
     theme=rx.theme(
@@ -72,3 +54,18 @@ app = rx.App(
         accent_color="grass",
     )
 )
+
+"""rx.form(
+        rx.vstack(
+                rx.input(
+                    placeholder="City",
+                    name="city",
+                ),
+                rx.input(
+                    placeholder="State",
+                    name="state",
+                ),
+                rx.button("Submit", type="submit"),
+            ),
+            on_submit=SuggestionState.handle_submission
+        """
