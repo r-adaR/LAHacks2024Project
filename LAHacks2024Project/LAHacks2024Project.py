@@ -733,7 +733,19 @@ def credits() -> rx.Component:
             rx.box(),
 
             rx.text(
-                "Resources and References TODO",
+                "Powered by Reflex https://reflex.dev/",
+                color=_BLUE,
+                size="7",
+                weight="medium",
+            ),
+
+            rx.box(),
+            rx.box(),
+            rx.box(),
+            rx.box(),
+
+            rx.text(
+                "Using Gemini Pro 1.5 https://gemini.google.com/",
                 color=_BLUE,
                 size="7",
                 weight="medium",
