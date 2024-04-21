@@ -9,13 +9,18 @@ filename = f"{config.app_name}/{config.app_name}.py"
 
 
 class State(rx.State):
-
-
-    def printTestMsg(self):
-        print("Hello World")
-        
-
     """The app state."""
+
+    city: str = "Los Angeles"
+    state: str = "CA"
+
+    def setCity(self, newCity: str):
+        self.city = newCity
+        print(self.city)
+        
+    def setState(self, newState: str):
+        self.state = newState
+        print(self.state)
 
 _GREEN = "#86FF9D"#"#edfa8b"
 _BLUE = "#3a53aa"#"#5664D6"#"#1e425e"
@@ -186,8 +191,84 @@ def explore() -> rx.Component:
 
                         rx.dialog.title("Recycling Center"),
                         
+                        rx.flex(
+
+                            rx.input(
+                            placeholder="City Name",
+                            value=State.city,
+                            on_change=State.setCity,
+                            ),
+
+                            rx.select.root(
+                                rx.select.trigger(),
+                                rx.select.content(
+                                    rx.select.item("AL", value="AL"),
+                                    rx.select.item("AK", value="AK"),
+                                    rx.select.item("AZ", value="AZ"),
+                                    rx.select.item("AR", value="AR"),
+                                    rx.select.item("CA", value="CA"),
+                                    rx.select.item("CO", value="CO"),
+                                    rx.select.item("CT", value="CT"),
+                                    rx.select.item("DE", value="DE"),
+                                    rx.select.item("DC", value="DC"),
+                                    rx.select.item("FL", value="FL"),
+                                    rx.select.item("GA", value="GA"),
+                                    rx.select.item("HI", value="HI"),
+                                    rx.select.item("ID", value="ID"),
+                                    rx.select.item("IL", value="IL"),
+                                    rx.select.item("IN", value="IN"),
+                                    rx.select.item("IA", value="IA"),
+                                    rx.select.item("KS", value="KS"),
+                                    rx.select.item("KY", value="KY"),
+                                    rx.select.item("LA", value="LA"),
+                                    rx.select.item("ME", value="ME"),
+                                    rx.select.item("MD", value="MD"),
+                                    rx.select.item("MA", value="MA"),
+                                    rx.select.item("MI", value="MI"),
+                                    rx.select.item("MN", value="MN"),
+                                    rx.select.item("MS", value="MS"),
+                                    rx.select.item("MO", value="MO"),
+                                    rx.select.item("MT", value="MT"),
+                                    rx.select.item("NE", value="NE"),
+                                    rx.select.item("NV", value="NV"),
+                                    rx.select.item("NH", value="NH"),
+                                    rx.select.item("NJ", value="NJ"),
+                                    rx.select.item("NM", value="NM"),
+                                    rx.select.item("NY", value="NY"),
+                                    rx.select.item("NC", value="NC"),
+                                    rx.select.item("ND", value="ND"),
+                                    rx.select.item("OH", value="OH"),
+                                    rx.select.item("OK", value="OK"),
+                                    rx.select.item("OR", value="OR"),
+                                    rx.select.item("PA", value="PA"),
+                                    rx.select.item("RI", value="RI"),
+                                    rx.select.item("SC", value="SC"),
+                                    rx.select.item("SD", value="SD"),
+                                    rx.select.item("TN", value="TN"),
+                                    rx.select.item("TX", value="TX"),
+                                    rx.select.item("UT", value="UT"),
+                                    rx.select.item("VT", value="VT"),
+                                    rx.select.item("VA", value="VA"),
+                                    rx.select.item("WA", value="WA"),
+                                    rx.select.item("WV", value="WV"),
+                                    rx.select.item("WI", value="WI"),
+                                    rx.select.item("WY", value="WY"),
+                                ),
+                                on_change=State.setState,
+                                default_value=State.state,
+                            ),
+
+                            spacing="2",
+                            direction="row",
+                            margin_bottom = "10px",
+
+                        ),
+                        
+
+
                         rx.dialog.description(
-                            "This is a dialog component. You can render anything youThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in here want in here.",
+                            "This is a dialog component. You can render anything youThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in here want in here.", 
+                            margin_bottom = "10px",
                         ),
                         rx.dialog.close(
                             rx.button("Close", size="3"),
@@ -228,8 +309,84 @@ def explore() -> rx.Component:
 
                         rx.dialog.title("Farmers Market"),
                         
+                        rx.flex(
+
+                            rx.input(
+                            placeholder="City Name",
+                            value=State.city,
+                            on_change=State.setCity,
+                            ),
+
+                            rx.select.root(
+                                rx.select.trigger(),
+                                rx.select.content(
+                                    rx.select.item("AL", value="AL"),
+                                    rx.select.item("AK", value="AK"),
+                                    rx.select.item("AZ", value="AZ"),
+                                    rx.select.item("AR", value="AR"),
+                                    rx.select.item("CA", value="CA"),
+                                    rx.select.item("CO", value="CO"),
+                                    rx.select.item("CT", value="CT"),
+                                    rx.select.item("DE", value="DE"),
+                                    rx.select.item("DC", value="DC"),
+                                    rx.select.item("FL", value="FL"),
+                                    rx.select.item("GA", value="GA"),
+                                    rx.select.item("HI", value="HI"),
+                                    rx.select.item("ID", value="ID"),
+                                    rx.select.item("IL", value="IL"),
+                                    rx.select.item("IN", value="IN"),
+                                    rx.select.item("IA", value="IA"),
+                                    rx.select.item("KS", value="KS"),
+                                    rx.select.item("KY", value="KY"),
+                                    rx.select.item("LA", value="LA"),
+                                    rx.select.item("ME", value="ME"),
+                                    rx.select.item("MD", value="MD"),
+                                    rx.select.item("MA", value="MA"),
+                                    rx.select.item("MI", value="MI"),
+                                    rx.select.item("MN", value="MN"),
+                                    rx.select.item("MS", value="MS"),
+                                    rx.select.item("MO", value="MO"),
+                                    rx.select.item("MT", value="MT"),
+                                    rx.select.item("NE", value="NE"),
+                                    rx.select.item("NV", value="NV"),
+                                    rx.select.item("NH", value="NH"),
+                                    rx.select.item("NJ", value="NJ"),
+                                    rx.select.item("NM", value="NM"),
+                                    rx.select.item("NY", value="NY"),
+                                    rx.select.item("NC", value="NC"),
+                                    rx.select.item("ND", value="ND"),
+                                    rx.select.item("OH", value="OH"),
+                                    rx.select.item("OK", value="OK"),
+                                    rx.select.item("OR", value="OR"),
+                                    rx.select.item("PA", value="PA"),
+                                    rx.select.item("RI", value="RI"),
+                                    rx.select.item("SC", value="SC"),
+                                    rx.select.item("SD", value="SD"),
+                                    rx.select.item("TN", value="TN"),
+                                    rx.select.item("TX", value="TX"),
+                                    rx.select.item("UT", value="UT"),
+                                    rx.select.item("VT", value="VT"),
+                                    rx.select.item("VA", value="VA"),
+                                    rx.select.item("WA", value="WA"),
+                                    rx.select.item("WV", value="WV"),
+                                    rx.select.item("WI", value="WI"),
+                                    rx.select.item("WY", value="WY"),
+                                ),
+                                on_change=State.setState,
+                                default_value=State.state,
+                            ),
+
+                            spacing="2",
+                            direction="row",
+                            margin_bottom = "10px",
+
+                        ),
+                        
+
+
                         rx.dialog.description(
-                            "This is a dialog component. You can render anything youThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in here want in here.",
+                            "This is a dialog component. You can render anything youThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in here want in here.", 
+                            margin_bottom = "10px",
                         ),
                         rx.dialog.close(
                             rx.button("Close", size="3"),
@@ -270,8 +427,84 @@ def explore() -> rx.Component:
 
                         rx.dialog.title("Metro Station"),
                         
+                        rx.flex(
+
+                            rx.input(
+                            placeholder="City Name",
+                            value=State.city,
+                            on_change=State.setCity,
+                            ),
+
+                            rx.select.root(
+                                rx.select.trigger(),
+                                rx.select.content(
+                                    rx.select.item("AL", value="AL"),
+                                    rx.select.item("AK", value="AK"),
+                                    rx.select.item("AZ", value="AZ"),
+                                    rx.select.item("AR", value="AR"),
+                                    rx.select.item("CA", value="CA"),
+                                    rx.select.item("CO", value="CO"),
+                                    rx.select.item("CT", value="CT"),
+                                    rx.select.item("DE", value="DE"),
+                                    rx.select.item("DC", value="DC"),
+                                    rx.select.item("FL", value="FL"),
+                                    rx.select.item("GA", value="GA"),
+                                    rx.select.item("HI", value="HI"),
+                                    rx.select.item("ID", value="ID"),
+                                    rx.select.item("IL", value="IL"),
+                                    rx.select.item("IN", value="IN"),
+                                    rx.select.item("IA", value="IA"),
+                                    rx.select.item("KS", value="KS"),
+                                    rx.select.item("KY", value="KY"),
+                                    rx.select.item("LA", value="LA"),
+                                    rx.select.item("ME", value="ME"),
+                                    rx.select.item("MD", value="MD"),
+                                    rx.select.item("MA", value="MA"),
+                                    rx.select.item("MI", value="MI"),
+                                    rx.select.item("MN", value="MN"),
+                                    rx.select.item("MS", value="MS"),
+                                    rx.select.item("MO", value="MO"),
+                                    rx.select.item("MT", value="MT"),
+                                    rx.select.item("NE", value="NE"),
+                                    rx.select.item("NV", value="NV"),
+                                    rx.select.item("NH", value="NH"),
+                                    rx.select.item("NJ", value="NJ"),
+                                    rx.select.item("NM", value="NM"),
+                                    rx.select.item("NY", value="NY"),
+                                    rx.select.item("NC", value="NC"),
+                                    rx.select.item("ND", value="ND"),
+                                    rx.select.item("OH", value="OH"),
+                                    rx.select.item("OK", value="OK"),
+                                    rx.select.item("OR", value="OR"),
+                                    rx.select.item("PA", value="PA"),
+                                    rx.select.item("RI", value="RI"),
+                                    rx.select.item("SC", value="SC"),
+                                    rx.select.item("SD", value="SD"),
+                                    rx.select.item("TN", value="TN"),
+                                    rx.select.item("TX", value="TX"),
+                                    rx.select.item("UT", value="UT"),
+                                    rx.select.item("VT", value="VT"),
+                                    rx.select.item("VA", value="VA"),
+                                    rx.select.item("WA", value="WA"),
+                                    rx.select.item("WV", value="WV"),
+                                    rx.select.item("WI", value="WI"),
+                                    rx.select.item("WY", value="WY"),
+                                ),
+                                on_change=State.setState,
+                                default_value=State.state,
+                            ),
+
+                            spacing="2",
+                            direction="row",
+                            margin_bottom = "10px",
+
+                        ),
+                        
+
+
                         rx.dialog.description(
-                            "This is a dialog component. You can render anything youThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in here want in here.",
+                            "This is a dialog component. You can render anything youThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in here want in here.", 
+                            margin_bottom = "10px",
                         ),
                         rx.dialog.close(
                             rx.button("Close", size="3"),
@@ -312,8 +545,84 @@ def explore() -> rx.Component:
 
                         rx.dialog.title("Explore The Park"),
                         
+                        rx.flex(
+
+                            rx.input(
+                            placeholder="City Name",
+                            value=State.city,
+                            on_change=State.setCity,
+                            ),
+
+                            rx.select.root(
+                                rx.select.trigger(),
+                                rx.select.content(
+                                    rx.select.item("AL", value="AL"),
+                                    rx.select.item("AK", value="AK"),
+                                    rx.select.item("AZ", value="AZ"),
+                                    rx.select.item("AR", value="AR"),
+                                    rx.select.item("CA", value="CA"),
+                                    rx.select.item("CO", value="CO"),
+                                    rx.select.item("CT", value="CT"),
+                                    rx.select.item("DE", value="DE"),
+                                    rx.select.item("DC", value="DC"),
+                                    rx.select.item("FL", value="FL"),
+                                    rx.select.item("GA", value="GA"),
+                                    rx.select.item("HI", value="HI"),
+                                    rx.select.item("ID", value="ID"),
+                                    rx.select.item("IL", value="IL"),
+                                    rx.select.item("IN", value="IN"),
+                                    rx.select.item("IA", value="IA"),
+                                    rx.select.item("KS", value="KS"),
+                                    rx.select.item("KY", value="KY"),
+                                    rx.select.item("LA", value="LA"),
+                                    rx.select.item("ME", value="ME"),
+                                    rx.select.item("MD", value="MD"),
+                                    rx.select.item("MA", value="MA"),
+                                    rx.select.item("MI", value="MI"),
+                                    rx.select.item("MN", value="MN"),
+                                    rx.select.item("MS", value="MS"),
+                                    rx.select.item("MO", value="MO"),
+                                    rx.select.item("MT", value="MT"),
+                                    rx.select.item("NE", value="NE"),
+                                    rx.select.item("NV", value="NV"),
+                                    rx.select.item("NH", value="NH"),
+                                    rx.select.item("NJ", value="NJ"),
+                                    rx.select.item("NM", value="NM"),
+                                    rx.select.item("NY", value="NY"),
+                                    rx.select.item("NC", value="NC"),
+                                    rx.select.item("ND", value="ND"),
+                                    rx.select.item("OH", value="OH"),
+                                    rx.select.item("OK", value="OK"),
+                                    rx.select.item("OR", value="OR"),
+                                    rx.select.item("PA", value="PA"),
+                                    rx.select.item("RI", value="RI"),
+                                    rx.select.item("SC", value="SC"),
+                                    rx.select.item("SD", value="SD"),
+                                    rx.select.item("TN", value="TN"),
+                                    rx.select.item("TX", value="TX"),
+                                    rx.select.item("UT", value="UT"),
+                                    rx.select.item("VT", value="VT"),
+                                    rx.select.item("VA", value="VA"),
+                                    rx.select.item("WA", value="WA"),
+                                    rx.select.item("WV", value="WV"),
+                                    rx.select.item("WI", value="WI"),
+                                    rx.select.item("WY", value="WY"),
+                                ),
+                                on_change=State.setState,
+                                default_value=State.state,
+                            ),
+
+                            spacing="2",
+                            direction="row",
+                            margin_bottom = "10px",
+
+                        ),
+                        
+
+
                         rx.dialog.description(
-                            "This is a dialog component. You can render anything youThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in here want in here.",
+                            "This is a dialog component. You can render anything youThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in hereThis is a dialog component. You can render anything you want in here want in here.", 
+                            margin_bottom = "10px",
                         ),
                         rx.dialog.close(
                             rx.button("Close", size="3"),
