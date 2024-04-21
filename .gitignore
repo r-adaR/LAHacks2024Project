@@ -3,3 +3,4 @@
 .web
 /env
 __pycache__/
+.env
